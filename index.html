@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <nav>
+      <h1 class="header">Branches of Government Quiz</h1>
+    </nav>
+    
+    <section class="start-page hidden">
+      <h2 class="question">How well do you Know your Federal Government?</h2>
+      <button class="start" value="start">Start</button>
+    </section>
+    
+    <main class="">
+      <h2 class="question">Which branch of government can porpose amendments to the U.S. constitution?</h2>
+        <form>
+          <p><input type="button" value="A"> Executive</p>
+          <p><input type="button" value="B"> Legislative</p>
+          <p><input type="button" value="C"> Judicial</p>
+        </form>
+        
+        <section class="tracker">
+          <p class="DATA" id="numQuestion">Question 1/10</p>
+          <p class="DATA" id="NumScore">Score 0/10</p>
+        </section>
+        
+        <form>
+            <label class="DATA" id="js-return"><input type="button" value="Back" class="nav"></label>
+            <label class="DATA" id="js-forward"><input type="button" value="Next" class="nav"></label>
+        </form>
+        
+    </main>
+    
+    
+    <script src="index.js"></script>
+  </body>
+</html>
