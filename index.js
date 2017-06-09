@@ -64,8 +64,28 @@ var questions = [
 //Constants
 var BEGINQUIZ = "#start";
 
+function startQuiz() {
+  console.log("`startQuiz` ran");
+  var startPoint = BEGINQUIZ.forEach(function(event){
+    event.preventDefault();
+    $(BEGINQUIZ).click(function(question){
+      for (var i = 0; i < question.length; i++) {
+        if (question[i] == )
+      }
+    })
+
+});
+}
+
 
 function renderQuestions() {
 	console.log("`renderQuestions` ran");
+   // This will render the first set of questions once the end user clicks start.
+   
+   };
 
+function handleResponses() {
+  renderQuestions();
 }
+
+$(handleResponses());
