@@ -1,5 +1,5 @@
 var questions = [
-	//question 1:
+   //question 1:
   {
   	question: "Which branch of government can propose an amendment to the U.S. Constitution?",
   	answers: [
@@ -13,9 +13,59 @@ var questions = [
   },
   // question 2:
   {
-  	question:
+  	question: "Which branch of U.S. Government can propose bills?",
+  	answers: [
+  		"Executive",
+  		"Legislative",
+  		"Judicial"
+  	],
+  	correctAnswerString: "Executive",
+  	correctanswer: 1,
+  	userResponse: null
+  },
+  //question 3:
+  {
+  	question: "Which Branch of government can declare executive actions unconstitutional?",
+  	answers: [
+  		"Executive",
+  		"Legislative",
+  		"Judicial"
+  	],
+  	correctAnswerString: "Judicial",
+  	correctanswer: 3,
+  	userResponse: null
+  },
+  //question 4: 
+  {
+  	question: "Which branch of government has the person who serves as commander and chief of the military?",
+  	answers: [
+  		"Executive",
+  		"Legislative",
+  		"Judicial"
+  	],
+  	correctAnswerString: "Executive",
+  	correctanswer: 1,
+  	userResponse: null
+  },
+  //question 5: 
+  {
+  	question: "Which branch of govt can formally accuse justices of crimes related to his/her duties?",
+  	answers: [
+  		"Executive",
+  		"Legislative",
+  		"Judicial"
+  	],
+  	correctAnswerString: "Legislative",
+  	correctanswer: 2,
+  	userResponse: null
   }
-
-
-
 ]
+
+//Constants
+var BEGINQUIZ = "#start";
+
+
+function renderQuestions() {
+	console.log("`renderQuestions` ran");
+
+}
