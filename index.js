@@ -63,16 +63,19 @@ var questions = [
 
 //Constants
 var BEGINQUIZ = "#start";
+var REMOVECLASS = ".hidden";
 
+
+
+function generateQuizQuestions() {
+  console.log("`generateQuizQuestions` ran");
+  $()
+}
 function startQuiz() {
   console.log("`startQuiz` ran");
   var startPoint = BEGINQUIZ.forEach(function(event){
     event.preventDefault();
-    $(BEGINQUIZ).click(function(question){
-      for (var i = 0; i < question.length; i++) {
-        if (question[i] == )
-      }
-    })
+
 
 });
 }
