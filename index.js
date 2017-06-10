@@ -64,31 +64,30 @@ var questions = [
 //Constants
 var BEGINQUIZ = "#start";
 var REMOVECLASS = ".hidden";
+var STARTPAGE = ".start-page";
 
 
 
 function generateQuizQuestions() {
   console.log("`generateQuizQuestions` ran");
-  $()
+  
+  $(BEGINQUIZ).click(function(){
+  	$(STARTPAGE).addClass(REMOVECLASS);
+  	$("main").removeClass(REMOVECLASS);
+  });
 }
+
+
 function startQuiz() {
   console.log("`startQuiz` ran");
-  var startPoint = BEGINQUIZ.forEach(function(event){
-    event.preventDefault();
+  
+  generateQuizQuestions();
+};
 
 
-});
-}
-
-
-function renderQuestions() {
-	console.log("`renderQuestions` ran");
-   // This will render the first set of questions once the end user clicks start.
-   
-   };
 
 function handleResponses() {
-  renderQuestions();
+  generateQuizQuestions();
 }
 
 $(handleResponses());
