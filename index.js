@@ -73,7 +73,7 @@ var STARTPAGE = ".start-page";
 var SET = "main";
 var QUESTION = ".question";
 var NEXTIDENTIFIER = "#js-forward";
-var CURRENTQUESTION = 1;
+var CURRENTQUESTION = 0;
 var ANSSHEET = "#AnswerSheet";
 
 
@@ -85,11 +85,14 @@ function renderQuestion(ID){
   for (var i = 0; i < questions.length; i++) {
     if (questions[i].ID === ID) {
       $(questions[i].answers).each(function(){
-      $(ANSSHEET).append('<p><input type="button" value="Executive" class="answers"></p>');
+      $(ANSSHEET).append('<p><input type="button" value="'+this+'" data-parentid="'+questions[i].ID+'" class="answers"></p>');
       });
       $(QUESTION).html(questions[i].question);
     }
   }
+  $(".answers").click(function(){
+    setResponse($(this).val(), $(this).data("parentid"));
+  });
 }
 function getNextSetOfQuestions() {
   console.log("`getNextSetOfQuestions` ran");
@@ -111,6 +114,13 @@ function startQuiz() {
 }
 
 
+function setResponse(response, id) {
+  for (var i = 0; i < questions.length; i++) {
+    if (questions[i].ID === id) {
+      questions[i].userResponse = response;
+    }
+  }
+}
 
 function endTest() {
 
@@ -121,6 +131,7 @@ function endTest() {
 function handleResponses() {
   getNextSetOfQuestions();
   startQuiz();
+  
 };
 
 
