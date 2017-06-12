@@ -7,6 +7,7 @@ var questions = [
   		"Legislative",
   		"Judicial"
   	],
+    ID: 1,
   	correctAnswerString: "Legislative",
   	correctanswer: 2,
   	userResponse: null
@@ -19,6 +20,7 @@ var questions = [
   		"Legislative",
   		"Judicial"
   	],
+    ID: 2,
   	correctAnswerString: "Executive",
   	correctanswer: 1,
   	userResponse: null
@@ -31,6 +33,7 @@ var questions = [
   		"Legislative",
   		"Judicial"
   	],
+    ID: 3,
   	correctAnswerString: "Judicial",
   	correctanswer: 3,
   	userResponse: null
@@ -43,6 +46,7 @@ var questions = [
   		"Legislative",
   		"Judicial"
   	],
+    ID: 4,
   	correctAnswerString: "Executive",
   	correctanswer: 1,
   	userResponse: null
@@ -55,6 +59,7 @@ var questions = [
   		"Legislative",
   		"Judicial"
   	],
+    ID: 5,
   	correctAnswerString: "Legislative",
   	correctanswer: 2,
   	userResponse: null
@@ -66,16 +71,57 @@ var BEGINQUIZ = "#start";
 var REMOVECLASS = "hidden";
 var STARTPAGE = ".start-page";
 var SET = "main";
+var QUESTION = ".question";
+var NEXTIDENTIFIER = "#js-forward";
+var CURRENTQUESTION = 1;
+var ANSSHEET = "#AnswerSheet";
 
 
-  
-  $(BEGINQUIZ).click(function(){
-  	$(STARTPAGE).addClass(REMOVECLASS);
-  	$(SET).removeClass(REMOVECLASS);
+function renderQuestion(ID){
+  console.log("`renderQuestion` ran");
+  $(SET).removeClass(REMOVECLASS);
+  $(STARTPAGE).addClass(REMOVECLASS);
+  $(ANSSHEET).html("");
+  for (var i = 0; i < questions.length; i++) {
+    if (questions[i].ID === ID) {
+      $(questions[i].answers).each(function(){
+      $(ANSSHEET).append('<p><input type="button" value="Executive" class="answers"></p>');
+      });
+      $(QUESTION).html(questions[i].question);
+    }
+  }
+}
+function getNextSetOfQuestions() {
+  console.log("`getNextSetOfQuestions` ran");
+  $(NEXTIDENTIFIER).click(function(event){
+    event.preventDefault();
+
+  $(NEXTIDENTIFIER).click(function(){
+    CURRENTQUESTION++;
+    renderQuestion(CURRENTQUESTION);
   });
+  });
+}
+
+function startQuiz() {
+  console.log("`startQuiz` ran");
+  $(BEGINQUIZ).click(function(){
+    renderQuestion(CURRENTQUESTION);
+  })
+}
+
+
+
+function endTest() {
+
+}
 
 
 
 function handleResponses() {
+  getNextSetOfQuestions();
+  startQuiz();
 };
+
+
 $(handleResponses());
