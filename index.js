@@ -63,31 +63,19 @@ var questions = [
 
 //Constants
 var BEGINQUIZ = "#start";
-var REMOVECLASS = ".hidden";
+var REMOVECLASS = "hidden";
 var STARTPAGE = ".start-page";
+var SET = "main";
 
 
-
-function generateQuizQuestions() {
-  console.log("`generateQuizQuestions` ran");
   
   $(BEGINQUIZ).click(function(){
   	$(STARTPAGE).addClass(REMOVECLASS);
-  	$("main").removeClass(REMOVECLASS);
+  	$(SET).removeClass(REMOVECLASS);
   });
-}
-
-
-function startQuiz() {
-  console.log("`startQuiz` ran");
-  
-  generateQuizQuestions();
-};
 
 
 
 function handleResponses() {
-  generateQuizQuestions();
-}
-
+};
 $(handleResponses());
