@@ -100,7 +100,7 @@ function getNextSetOfQuestions() {
     event.preventDefault();
 
   $(NEXTIDENTIFIER).click(function(){
-    CURRENTQUESTION++;
+    CURRENTQUESTION+=1;
     renderQuestion(CURRENTQUESTION);
   });
   });
