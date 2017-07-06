@@ -77,6 +77,7 @@ var CURRENTQUESTION = 1;
 var ANSSHEET = "#AnswerSheet";
 var GOBACK = "#js-return";
 var NUMQUESTION = 1;
+var NUMOFQUESTION = "#numQuestion";
 
 
 function renderQuestion(ID){
@@ -130,15 +131,15 @@ function startQuiz() {
 
 function numOfQuestions() {
   console.log("`numOfQuestions` ran");
+  var countClicks = 1/5;
 
-  $(NEXTIDENTIFIER).click(function(event){
-    event.preventDefault();
+      $(NUMOFQUESTION).text(countClicks);
+      $(NEXTIDENTIFIER).click(function(event){
+        countClicks+=1;
+      $(NUMOFQUESTION).text(countClicks);
 
-  $(NEXTIDENTIFIER).click(function(){
-    NUMQUESTION++;
-  })
-  })
-}
+});
+};
 
 function setResponse(response, id) {
   for (var i = 0; i < questions.length; i++) {
