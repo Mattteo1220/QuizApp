@@ -73,8 +73,9 @@ var STARTPAGE = ".start-page";
 var SET = "main";
 var QUESTION = ".question";
 var NEXTIDENTIFIER = "#js-forward";
-var CURRENTQUESTION = 0;
+var CURRENTQUESTION = 1;
 var ANSSHEET = "#AnswerSheet";
+var GOBACK = "#js-return"
 
 
 function renderQuestion(ID){
@@ -94,13 +95,26 @@ function renderQuestion(ID){
     setResponse($(this).val(), $(this).data("parentid"));
   });
 }
+
 function getNextSetOfQuestions() {
   console.log("`getNextSetOfQuestions` ran");
   $(NEXTIDENTIFIER).click(function(event){
     event.preventDefault();
 
   $(NEXTIDENTIFIER).click(function(){
-    CURRENTQUESTION+=1;
+    CURRENTQUESTION++;
+    renderQuestion(CURRENTQUESTION);
+  });
+  });
+}
+
+function goBackSetOfQuestions() {
+  console.log("'goBackSetOfQuestions' ran");
+  $(GOBACK).click(function(event) {
+    event.preventDefault();
+
+  $(GOBACK).click(function(){
+    CURRENTQUESTION--;
     renderQuestion(CURRENTQUESTION);
   });
   });
@@ -131,6 +145,7 @@ function endTest() {
 function handleResponses() {
   getNextSetOfQuestions();
   startQuiz();
+  goBackSetOfQuestions();
   
 };
 
