@@ -75,7 +75,8 @@ var QUESTION = ".question";
 var NEXTIDENTIFIER = "#js-forward";
 var CURRENTQUESTION = 1;
 var ANSSHEET = "#AnswerSheet";
-var GOBACK = "#js-return"
+var GOBACK = "#js-return";
+var NUMQUESTION = 1;
 
 
 function renderQuestion(ID){
@@ -127,6 +128,17 @@ function startQuiz() {
   })
 }
 
+function numOfQuestions() {
+  console.log("`numOfQuestions` ran");
+
+  $(NEXTIDENTIFIER).click(function(event){
+    event.preventDefault();
+
+  $(NEXTIDENTIFIER).click(function(){
+    NUMQUESTION++;
+  })
+  })
+}
 
 function setResponse(response, id) {
   for (var i = 0; i < questions.length; i++) {
@@ -146,6 +158,7 @@ function handleResponses() {
   getNextSetOfQuestions();
   startQuiz();
   goBackSetOfQuestions();
+  numOfQuestions();
   
 };
 
