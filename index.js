@@ -133,10 +133,25 @@ function numOfQuestions() {
   console.log("`numOfQuestions` ran");
   var clicker = 1;
 
+      $(NEXTIDENTIFIER).click(function(event){
+        event.preventDefault();
+      })
+
       $(NUMOFQUESTION).text(clicker);
       $(NEXTIDENTIFIER).click(function(event){
         clicker+=1;
       $(NUMOFQUESTION).text(clicker);
+
+
+      $(GOBACK).click(function(event){
+        event.preventDefault();
+      })
+      $(NUMOFQUESTION).text(clicker)
+      $(GOBACK).click(function(event){
+        clicker-=1;
+      $(NUMOFQUESTION).text(clicker);
+      })
+      
 
 });
 };
