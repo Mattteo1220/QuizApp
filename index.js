@@ -124,32 +124,29 @@ function startQuiz() {
   })
 }
 
-function numOfQuestions(ID) {
+function numOfQuestions() {
   console.log("`numOfQuestions` ran");
   var clicker = 1;
-  
-      $(NUMOFQUESTION).text(clicker);
-      $(NEXTIDENTIFIER).click(function(event){
-        clicker+=1;
-      $(NUMOFQUESTION).text(clicker);
-});
-};
 
-function backNumOfQuestions() {
-
-    $(NUMOFQUESTION).text(clicker)
-    $(GOBACK).click(function(event){
-      clicker-=1;
+  $(NUMOFQUESTION).text(clicker);
+  if (clicker < questions.length) {
+    $(NEXTIDENTIFIER).click(function(event){
+      clicker++
+      if (clicker > questions.length){
+        $(NEXTIDENTIFIER).off("click");
+      }
+      $(NUMOFQUESTION).text(clicker);
+    })
+  }
+    $(GOBACK).on("click", function(event){
+    clicker--;
     $(NUMOFQUESTION).text(clicker);
-      })
-}
+  });
+  };
+
 
 function setResponse(response, id) {
-  for (var i = 0; i < questions.length; i++) {
-    if (questions[i].ID === id) {
-      questions[i].userResponse = response;
-    }
-  }
+  
 }
 
 function endTest() {
