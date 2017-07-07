@@ -78,6 +78,7 @@ var ANSSHEET = "#AnswerSheet";
 var GOBACK = "#js-return";
 var NUMQUESTION = 1;
 var NUMOFQUESTION = ".clicker";
+var ANSWERS = ".answers";
 
 
 function renderQuestion(ID){
@@ -93,32 +94,26 @@ function renderQuestion(ID){
       $(QUESTION).html(questions[i].question);
     }
   }
-  $(".answers").click(function(){
+  $(ANSWERS).click(function(){
     setResponse($(this).val(), $(this).data("parentid"));
   });
 }
 
 function getNextSetOfQuestions() {
   console.log("`getNextSetOfQuestions` ran");
-  $(NEXTIDENTIFIER).click(function(event){
-    event.preventDefault();
 
-  $(NEXTIDENTIFIER).click(function(){
+  $(NEXTIDENTIFIER).on("click", function(){
     CURRENTQUESTION++;
     renderQuestion(CURRENTQUESTION);
-  });
   });
 }
 
 function goBackSetOfQuestions() {
   console.log("'goBackSetOfQuestions' ran");
-  $(GOBACK).click(function(event) {
-    event.preventDefault();
 
   $(GOBACK).click(function(){
     CURRENTQUESTION--;
     renderQuestion(CURRENTQUESTION);
-  });
   });
 }
 
@@ -129,32 +124,25 @@ function startQuiz() {
   })
 }
 
-function numOfQuestions() {
+function numOfQuestions(ID) {
   console.log("`numOfQuestions` ran");
   var clicker = 1;
-
-      $(NEXTIDENTIFIER).click(function(event){
-        event.preventDefault();
-      })
-
+  
       $(NUMOFQUESTION).text(clicker);
       $(NEXTIDENTIFIER).click(function(event){
         clicker+=1;
       $(NUMOFQUESTION).text(clicker);
-
-
-      $(GOBACK).click(function(event){
-        event.preventDefault();
-      })
-      $(NUMOFQUESTION).text(clicker)
-      $(GOBACK).click(function(event){
-        clicker-=1;
-      $(NUMOFQUESTION).text(clicker);
-      })
-      
-
 });
 };
+
+function backNumOfQuestions() {
+
+    $(NUMOFQUESTION).text(clicker)
+    $(GOBACK).click(function(event){
+      clicker-=1;
+    $(NUMOFQUESTION).text(clicker);
+      })
+}
 
 function setResponse(response, id) {
   for (var i = 0; i < questions.length; i++) {
