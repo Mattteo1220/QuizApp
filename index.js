@@ -77,7 +77,7 @@ var CURRENTQUESTION = 1;
 var ANSSHEET = "#AnswerSheet";
 var GOBACK = "#js-return";
 var NUMQUESTION = 1;
-var NUMOFQUESTION = "#numQuestion";
+var NUMOFQUESTION = ".clicker";
 
 
 function renderQuestion(ID){
@@ -131,12 +131,12 @@ function startQuiz() {
 
 function numOfQuestions() {
   console.log("`numOfQuestions` ran");
-  var countClicks = 1/5;
+  var clicker = 1;
 
-      $(NUMOFQUESTION).text(countClicks);
+      $(NUMOFQUESTION).text(clicker);
       $(NEXTIDENTIFIER).click(function(event){
-        countClicks+=1;
-      $(NUMOFQUESTION).text(countClicks);
+        clicker+=1;
+      $(NUMOFQUESTION).text(clicker);
 
 });
 };
