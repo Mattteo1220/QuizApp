@@ -81,6 +81,7 @@ var NUMOFQUESTION = ".clicker";
 var ANSWERS = ".answers";
 var FINISH = "Finish";
 var END = "#end"
+var PLAYAGAIN = "#playAgain"
 
 function renderQuestion(ID){
   console.log("`renderQuestion` ran");
@@ -164,6 +165,13 @@ function endTest() {
 
 }
 
+function playAgain() {
+  $(PLAYAGAIN).on("click",function(event){
+    $(END).addClass(REMOVECLASS);
+    $(STARTPAGE).removeClass(REMOVECLASS);
+  })
+}
+
 
 
 function handleResponses() {
@@ -171,7 +179,7 @@ function handleResponses() {
   startQuiz();
   goBackSetOfQuestions();
   numOfQuestions();
-  
+  playAgain();
 };
 
 
