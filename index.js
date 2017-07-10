@@ -79,7 +79,8 @@ var GOBACK = "#js-return";
 var NUMQUESTION = 1;
 var NUMOFQUESTION = ".clicker";
 var ANSWERS = ".answers";
-
+var FINISH = "Finish";
+var END = "#end"
 
 function renderQuestion(ID){
   console.log("`renderQuestion` ran");
@@ -95,7 +96,7 @@ function renderQuestion(ID){
     }
   }
   $(ANSWERS).click(function(){
-    setResponse($(this).val(), $(this).data("parentid"));
+    setResponse($(this).val(""), $(this).data("parentid"));
   });
 }
 
@@ -132,8 +133,11 @@ function numOfQuestions() {
   if (clicker < questions.length) {
     $(NEXTIDENTIFIER).click(function(event){
       clicker++
-      if (clicker > questions.length){
-        $(NEXTIDENTIFIER).off("click");
+      if (clicker === questions.length){
+        $(NEXTIDENTIFIER).on("click", function(event){
+          $(SET).addClass(REMOVECLASS);
+          $(END).removeClass(REMOVECLASS);
+        });
       }
       $(NUMOFQUESTION).text(clicker);
     })
@@ -141,12 +145,19 @@ function numOfQuestions() {
     $(GOBACK).on("click", function(event){
     clicker--;
     $(NUMOFQUESTION).text(clicker);
+      if (clicker === 1) {
+        $(GOBACK).off("click");
+      }
   });
   };
 
 
 function setResponse(response, id) {
-  
+  for (var i = 0; i < questions.length; i++) {
+    if (questions[i].ID === id) {
+      questions[i].userResponse = response;
+  }
+  }
 }
 
 function endTest() {
