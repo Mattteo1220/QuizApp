@@ -10,6 +10,7 @@ var questions = [
     ID: 1,
   	correctAnswerString: "Legislative",
   	correctanswer: 2,
+  	counter: 1,
   	userResponse: null
   },
   // question 2:
@@ -23,6 +24,7 @@ var questions = [
     ID: 2,
   	correctAnswerString: "Executive",
   	correctanswer: 1,
+  	counter: 1,
   	userResponse: null
   },
   //question 3:
@@ -36,6 +38,7 @@ var questions = [
     ID: 3,
   	correctAnswerString: "Judicial",
   	correctanswer: 3,
+  	counter: 1,
   	userResponse: null
   },
   //question 4: 
@@ -49,6 +52,7 @@ var questions = [
     ID: 4,
   	correctAnswerString: "Executive",
   	correctanswer: 1,
+  	counter: 1,
   	userResponse: null
   },
   //question 5: 
@@ -62,6 +66,7 @@ var questions = [
     ID: 5,
   	correctAnswerString: "Legislative",
   	correctanswer: 2,
+  	counter: 1,
   	userResponse: null
   }
 ]
@@ -83,7 +88,11 @@ var FINISH = "Finish";
 var END = "#end"
 var PLAYAGAIN = "#playAgain"
 var CLICKER = 1;
+var CORRECT = "correct";
+var INCORRECT = "incorrect";
 
+
+//Functions
 function renderQuestion(ID){
   console.log("`renderQuestion` ran");
   $(SET).removeClass(REMOVECLASS);
@@ -91,14 +100,15 @@ function renderQuestion(ID){
   $(ANSSHEET).html("");
   for (var i = 0; i < questions.length; i++) {
     if (questions[i].ID === ID) {
+    	questions[i].counter = 1;
       $(questions[i].answers).each(function(){
-      $(ANSSHEET).append('<p><input type="button" value="'+this+'" data-parentid="'+questions[i].ID+'" class="answers"></p>');
+      $(ANSSHEET).append('<p><input type="button" id="'+this+"_"+questions[i].ID+'" value="'+this+'" data-parentid="'+questions[i].ID+'" class="answers"></p>');
       });
       $(QUESTION).html(questions[i].question);
     }
   }
   $(ANSWERS).click(function(){
-    setResponse($(this).val(""), $(this).data("parentid"));
+    setResponse($(this).val(), $(this).data("parentid"));
   });
 }
 
@@ -117,6 +127,11 @@ function goBackSetOfQuestions() {
   $(GOBACK).click(function(){
     CURRENTQUESTION--;
     renderQuestion(CURRENTQUESTION);
+    for (var i = 0; i < questions.length; i++) {
+    	if (questions[i].ID === CURRENTQUESTION){
+    		questions[i].counter = 1;
+    	}
+    }
   });
 }
 
@@ -147,8 +162,10 @@ function numOfQuestions() {
     $(GOBACK).on("click", function(event){
     CLICKER--;
     $(NUMOFQUESTION).text(CLICKER);
-      if (CLICKER === 1) {
-        $(GOBACK).off("click");
+      if (CLICKER < 1) {
+        $(GOBACK).on("click",function(event){
+        	event.stopPropagation();
+        });
         }
   });
   };
@@ -157,7 +174,19 @@ function numOfQuestions() {
 function setResponse(response, id) {
   for (var i = 0; i < questions.length; i++) {
     if (questions[i].ID === id) {
+    	if (questions[i].counter > 0){
       questions[i].userResponse = response;
+      questions[i].counter--;
+      if (response === questions[i].correctAnswerString) {
+      	$("#" + response + "_" + id).addClass(CORRECT);
+      }
+      else {
+      	$("#" + response + "_" + id).addClass(INCORRECT);
+      }
+  }
+  	else {
+  		alert("You have already selected your answer. Please go foward")
+  }
   }
   }
 }
