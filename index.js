@@ -85,11 +85,13 @@ var NUMQUESTION = 1;
 var NUMOFQUESTION = ".clicker";
 var ANSWERS = ".answers";
 var FINISH = "Finish";
-var END = "#end"
-var PLAYAGAIN = "#playAgain"
+var END = "#end";
+var PLAYAGAIN = "#playAgain";
 var CLICKER = 1;
 var CORRECT = "correct";
 var INCORRECT = "incorrect";
+var SCORER = 0;
+var NUMCORRECT = "#scorer";
 
 
 //Functions
@@ -176,29 +178,40 @@ function setResponse(response, id) {
     if (questions[i].ID === id) {
     	if (questions[i].counter > 0){
       questions[i].userResponse = response;
+      $(NUMCORRECT).text(SCORER);
       questions[i].counter--;
       if (response === questions[i].correctAnswerString) {
       	$("#" + response + "_" + id).addClass(CORRECT);
+      	SCORER++;
+      	$(NUMCORRECT).text(SCORER);
+
       }
       else {
       	$("#" + response + "_" + id).addClass(INCORRECT);
       }
   }
   	else {
-  		alert("You have already selected your answer. Please go foward")
+  		alert("You have already selected your answer. Please click Next.")
   }
   }
   }
 }
 
 function endTest() {
-
+	console.log("`endTest` ran");
+		
 }
 
 function playAgain() {
   $(PLAYAGAIN).on("click",function(event){
     $(END).addClass(REMOVECLASS);
     $(STARTPAGE).removeClass(REMOVECLASS);
+    SCORER = 0;
+    $(NUMCORRECT).text(SCORER);
+    CLICKER = 0;
+    $(NUMOFQUESTION).text(CLICKER);
+    
+
   })
 }
 
@@ -210,6 +223,7 @@ function handleResponses() {
   goBackSetOfQuestions();
   numOfQuestions();
   playAgain();
+  endTest();
 };
 
 
