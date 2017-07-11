@@ -82,6 +82,7 @@ var ANSWERS = ".answers";
 var FINISH = "Finish";
 var END = "#end"
 var PLAYAGAIN = "#playAgain"
+var CLICKER = 1;
 
 function renderQuestion(ID){
   console.log("`renderQuestion` ran");
@@ -128,27 +129,27 @@ function startQuiz() {
 
 function numOfQuestions() {
   console.log("`numOfQuestions` ran");
-  var clicker = 1;
+  
 
-  $(NUMOFQUESTION).text(clicker);
-  if (clicker < questions.length) {
+  $(NUMOFQUESTION).text(CLICKER);
+  if (CLICKER < questions.length) {
     $(NEXTIDENTIFIER).click(function(event){
-      clicker++
-      if (clicker === questions.length){
+      CLICKER++
+      if (CLICKER === questions.length){
         $(NEXTIDENTIFIER).on("click", function(event){
           $(SET).addClass(REMOVECLASS);
           $(END).removeClass(REMOVECLASS);
         });
       }
-      $(NUMOFQUESTION).text(clicker);
+      $(NUMOFQUESTION).text(CLICKER);
     })
   }
     $(GOBACK).on("click", function(event){
-    clicker--;
-    $(NUMOFQUESTION).text(clicker);
-      if (clicker === 1) {
+    CLICKER--;
+    $(NUMOFQUESTION).text(CLICKER);
+      if (CLICKER === 1) {
         $(GOBACK).off("click");
-      }
+        }
   });
   };
 
