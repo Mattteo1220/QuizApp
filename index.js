@@ -155,7 +155,7 @@ function numOfQuestions() {
   $(NUMOFQUESTION).text(CLICKER);
   if (CLICKER < questions.length) {
     $(NEXTIDENTIFIER).click(function(event){
-      CLICKER++
+      CLICKER++;
       if (CLICKER === questions.length){
         $(NEXTIDENTIFIER).on("click", function(event){
           $(SET).addClass(REMOVECLASS);
@@ -198,6 +198,7 @@ function setResponse(response, id) {
       }
       else {
       	$("#" + response + "_" + id).addClass(INCORRECT);
+      	alert("Sorry that is Wrong, The real answer is the " + questions[i].correctAnswerString + " Branch");
       }
   }
   	else {
@@ -209,21 +210,20 @@ function setResponse(response, id) {
 
 function endTest() {
 	console.log("`endTest` ran");
-		
-}
+	$(STARTPAGE).on("click",function(){
+    	for (var i = 0; i < questions.length; i++){
+    		questions[i].userResponse = null;
+    		questions[i].counter = 1;
+    	}
+    	CURRENTQUESTION = 1;
+    	renderQuestion(CURRENTQUESTION);
+});
+};
+
 
 function playAgain() {
   $(PLAYAGAIN).on("click",function(event){
-    $(END).addClass(REMOVECLASS);
-    $(STARTPAGE).removeClass(REMOVECLASS);
-    SCORER = 0;
-    $(NUMCORRECT).text(SCORER);
-    CLICKER = 0;
-    $(NUMOFQUESTION).text(CLICKER);
-    ENDSCORE = 0;
-    $(SCORE).text(ENDSCORE);
-    PERC = 0;
-    $(PERCENTAGE).text(PERC);
+  	location.reload();
   })
 }
 
