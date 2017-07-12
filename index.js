@@ -94,6 +94,8 @@ var SCORER = 0;
 var NUMCORRECT = "#scorer";
 var SCORE = ".end-clicker";
 var ENDSCORE = 0;
+var PERCENTAGE = ".percentage";
+var PERC = 0;
 
 
 //Functions
@@ -182,13 +184,16 @@ function setResponse(response, id) {
       questions[i].userResponse = response;
       $(NUMCORRECT).text(SCORER);
       $(SCORE).text(ENDSCORE);
+      $(PERCENTAGE).text(PERC);
       questions[i].counter--;
       if (response === questions[i].correctAnswerString) {
       	$("#" + response + "_" + id).addClass(CORRECT);
       	SCORER++;
       	ENDSCORE++;
+      	PERC = (ENDSCORE / 5) * 100;
       	$(NUMCORRECT).text(SCORER);
       	$(SCORE).text(ENDSCORE);
+      	$(PERCENTAGE).text(PERC);
 
       }
       else {
@@ -217,7 +222,8 @@ function playAgain() {
     $(NUMOFQUESTION).text(CLICKER);
     ENDSCORE = 0;
     $(SCORE).text(ENDSCORE);
-
+    PERC = 0;
+    $(PERCENTAGE).text(PERC);
   })
 }
 
