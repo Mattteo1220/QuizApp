@@ -92,6 +92,8 @@ var CORRECT = "correct";
 var INCORRECT = "incorrect";
 var SCORER = 0;
 var NUMCORRECT = "#scorer";
+var SCORE = ".end-clicker";
+var ENDSCORE = 0;
 
 
 //Functions
@@ -179,11 +181,14 @@ function setResponse(response, id) {
     	if (questions[i].counter > 0){
       questions[i].userResponse = response;
       $(NUMCORRECT).text(SCORER);
+      $(SCORE).text(ENDSCORE);
       questions[i].counter--;
       if (response === questions[i].correctAnswerString) {
       	$("#" + response + "_" + id).addClass(CORRECT);
       	SCORER++;
+      	ENDSCORE++;
       	$(NUMCORRECT).text(SCORER);
+      	$(SCORE).text(ENDSCORE);
 
       }
       else {
@@ -210,7 +215,8 @@ function playAgain() {
     $(NUMCORRECT).text(SCORER);
     CLICKER = 0;
     $(NUMOFQUESTION).text(CLICKER);
-    
+    ENDSCORE = 0;
+    $(SCORE).text(ENDSCORE);
 
   })
 }
